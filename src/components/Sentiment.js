@@ -98,7 +98,7 @@ function Sentiment() {
               height={6}
               sx={{
                 backgroundColor: "green",
-                width: { lg: 380, xs: 76, sm: 114, md: 228 },
+                width: { lg: 380, xs: 50, sm: 114, md: 228 },
               }}
             ></Box>
             <Typography mt={1} variant="p">

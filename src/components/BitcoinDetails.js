@@ -2,8 +2,18 @@ import { Typography, Box } from "@mui/material";
 import React from "react";
 import bitcoin from "../images/bitlogo.png";
 import TradingViewWidget from "./TradingViewWidget";
+import { useEffect, useState } from "react";
 
 function BitcoinDetails() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
+      .then((res) => res.json())
+      .then((a) => setData(a));
+    console.log(data);
+  }, []);
+
   return (
     <Box ml={3} pt={3}>
       <Typography>
@@ -47,7 +57,12 @@ function BitcoinDetails() {
             alignItems={"center"}
           >
             <Typography fontWeight={"bold"} fontSize={30}>
-              $123456.26
+              $
+              {data ? (
+                data.market_data.current_price.usd
+              ) : (
+                <Typography>Loading</Typography>
+              )}
             </Typography>
             <Box ml={2} mr={1} backgroundColor={"rgba(235, 249, 244, 1)"}>
               <Typography color={"green"}>^ 2.15% </Typography>
@@ -55,7 +70,14 @@ function BitcoinDetails() {
             (24H)
           </Box>
           <Box>
-            <Typography fontWeight={"bold"}>₹36,25,556</Typography>
+            <Typography fontWeight={"bold"}>
+              ₹
+              {data ? (
+                data.market_data.current_price.inr
+              ) : (
+                <Typography>Loading</Typography>
+              )}
+            </Typography>
           </Box>
         </Box>
         <hr />

@@ -1,7 +1,15 @@
 import React from "react";
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
 
 function OverView() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
+      .then((res) => res.json())
+      .then((a) => setData(a));
+  }, []);
   return (
     <Box m={3}>
       <Box overflow={"auto"}>
@@ -180,16 +188,22 @@ function OverView() {
                 <Typography color={"rgba(118, 131, 150, 1)"}>
                   Bitcoin Price
                 </Typography>
-                <Typography fontWeight={"bold"}>$15,655.65</Typography>
+                <Typography fontWeight={"bold"}>
+                  $
+                  {data ? (
+                    data.market_data.current_price.usd
+                  ) : (
+                    <Typography>Loading</Typography>
+                  )}
+                </Typography>
               </Box>
               <hr />
               <Box display={"flex"} justifyContent={"space-between"}>
                 <Typography pr={2} color={"rgba(118, 131, 150, 1)"}>
                   24h Low / 24h High
                 </Typography>
-                <Typography fontWeight={"bold"}>
-                  $15,655.65 / $15,655.65
-                </Typography>
+
+                <Typography fontWeight={"bold"}>$652135 / $66213</Typography>
               </Box>
               <hr />
               <Box display={"flex"} justifyContent={"space-between"}>

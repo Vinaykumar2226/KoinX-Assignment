@@ -49,7 +49,7 @@ function AboutBitcoin() {
       </Typography>
       <Box mb={2} display={"flex"} flexWrap={"wrap"}>
         <Box
-          p={3}
+          p={1.5}
           m={1}
           display={"flex"}
           alignItems={"center"}
@@ -90,7 +90,7 @@ function AboutBitcoin() {
           </Box>
         </Box>
         <Box
-          p={3}
+          p={1.5}
           m={1}
           display={"flex"}
           alignItems={"center"}
